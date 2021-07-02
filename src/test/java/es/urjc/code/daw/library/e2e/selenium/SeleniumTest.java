@@ -112,14 +112,3 @@ public class SeleniumTest {
     }
     
 }
-    private void createNewBook(String title, String description){
-        // Hacemos click en "New book"
-        driver.findElement(By.xpath("//*[text()='New book']")).click();
-        // Rellenamos el formulario
-        driver.findElement(By.name("title")).sendKeys(title);
-        driver.findElement(By.name("description")).sendKeys(description );
-        // Enviamos el formulario
-        driver.findElement(By.id("Save")).click();
-    }
-    
-}
