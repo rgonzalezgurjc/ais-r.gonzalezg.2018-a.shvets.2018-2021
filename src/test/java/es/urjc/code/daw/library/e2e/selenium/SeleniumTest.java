@@ -19,10 +19,10 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import es.urjc.code.daw.library.Application;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SeleniumTest {
-
     @LocalServerPort
     int port;
 
@@ -34,11 +34,18 @@ public class SeleniumTest {
 		WebDriverManager.chromedriver().setup();
 	}
 
-	@BeforeEach
+	/*@BeforeEach
 	public void setupTest() {
         this.driver = new ChromeDriver();
         this.wait = new WebDriverWait(driver, 10);
-	}
+	}*/
+	@BeforeEach
+    	public void setupTest() {
+    	 ChromeOptions options = new ChromeOptions();
+         options.addArguments("--headless");
+        this.driver = new ChromeDriver(options);
+        this.wait = new WebDriverWait(driver, 10);
+    }
 
 	@AfterEach
 	public void teardown() {
@@ -50,9 +57,9 @@ public class SeleniumTest {
     @Test
     @DisplayName("Añadir un nuevo libro y comprobar que se ha creado")
 	public void createBookTest() throws Exception {
-
+	 String host = System.getProperty("host", "localhost");
         // GIVEN: Partiendo de que estamos en la página principal de la libreria
-        this.driver.get("http://localhost:"+this.port+"/");
+	this.driver.get("http://localhost:"+this.port+"/");
 
         // WHEN: Creamos un nuevo libro
 
@@ -70,7 +77,7 @@ public class SeleniumTest {
     @Test
 	@DisplayName("Borrar un libro y comprobar que no existe")
 	public void deleteBookTest() throws Exception {
-
+	 String host = System.getProperty("host", "localhost");
         // GIVEN: Partiendo de que estamos en la página principal de la libreria
         this.driver.get("http://localhost:"+this.port+"/");
 
@@ -94,6 +101,17 @@ public class SeleniumTest {
 
     }
 
+    private void createNewBook(String title, String description){
+        // Hacemos click en "New book"
+        driver.findElement(By.xpath("//*[text()='New book']")).click();
+        // Rellenamos el formulario
+        driver.findElement(By.name("title")).sendKeys(title);
+        driver.findElement(By.name("description")).sendKeys(description );
+        // Enviamos el formulario
+        driver.findElement(By.id("Save")).click();
+    }
+    
+}
     private void createNewBook(String title, String description){
         // Hacemos click en "New book"
         driver.findElement(By.xpath("//*[text()='New book']")).click();
