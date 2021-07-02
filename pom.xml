@@ -17,11 +17,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
 	</properties>
-
-	<properties>
-    		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    		<mainClass>com.enterprise.mainPacket.MainApp</mainClass>
-	</properties>
 	
 	<dependencies>
 		<dependency>
