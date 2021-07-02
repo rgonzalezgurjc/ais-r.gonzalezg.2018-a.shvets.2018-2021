@@ -20,12 +20,13 @@ import io.restassured.http.ContentType;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("REST tests")
 public class RestTest {
-
+    String host = System.getProperty("host", "localhost");
     @LocalServerPort
     int port;
 
     @BeforeEach
     public void setUp() {
+    
         RestAssured.port = port;
     }
 
