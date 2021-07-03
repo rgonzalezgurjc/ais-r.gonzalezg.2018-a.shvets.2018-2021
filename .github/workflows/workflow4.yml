@@ -20,7 +20,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: target
-        path: target
+        path: target/*.jar
         retention-days: 1
         
   publish_in_dockerhub:
@@ -34,7 +34,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: target
-          path: target
+          path: target/*.jar
       - name: Generate tag
         run: echo ::set-output name=tag::$(date +'%Y%m%d')
         id: project
