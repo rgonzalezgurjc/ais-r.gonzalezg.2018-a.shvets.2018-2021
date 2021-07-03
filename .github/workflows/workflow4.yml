@@ -1,7 +1,8 @@
 name: workflow4
 on:
   schedule:
-    - cron: '00 00 * * *'     
+    - cron: '00 00 * * *'  
+  workflow_dispatch:
 jobs:
   build:
     name: Build Java application
