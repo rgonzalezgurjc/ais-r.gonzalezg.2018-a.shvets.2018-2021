@@ -23,7 +23,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: target
-        path: target/*.jar
+        path: target
         retention-days: 1
         
   publish_in_heroku_registry:
@@ -40,7 +40,7 @@ jobs:
          uses: actions/download-artifact@v2
          with:
           name: target
-          path: target/*.jar
+          path: target
        - name: Build Docker Image
          run: docker build -t ais-ricardoanton-2021 .
        - name: Install Heroku CLI
@@ -66,7 +66,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: target
-          path: target/*.jar
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - name: Login in Heroku
