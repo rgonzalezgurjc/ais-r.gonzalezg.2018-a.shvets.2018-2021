@@ -40,7 +40,6 @@ jobs:
          uses: actions/download-artifact@v1
          with:
           name: target
-          path: target/*.jar
        - name: Build Docker Image
          run: docker build -t ais-ricardoanton-2021 .
        - name: Install Heroku CLI
@@ -66,7 +65,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: target
-          path: target/*.jar
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - name: Login in Heroku
