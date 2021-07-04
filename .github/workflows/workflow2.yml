@@ -18,7 +18,7 @@ jobs:
       with:
         java-version: 11
     - name: Build all test
-      run: mvn -B package -DskipTests
+      run: mvn -B package
     - name: Upload jar for next job
       uses: actions/upload-artifact@v2
       with:
